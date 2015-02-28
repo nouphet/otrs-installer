@@ -10,7 +10,7 @@
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
 # Setting OTRS Env
-VERSION="3.3.11"
+VERSION="4.0.6"
 DATABASE_PASS="otrsdbpass"
 
 SCRIPT_NAME=$0
