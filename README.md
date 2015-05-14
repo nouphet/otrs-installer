@@ -13,3 +13,9 @@ If you want to install OTRS from Source Code.
 ```
 $ otrs-installer.sh src
 ```
+
+One Liner
+```
+# cd /usr/local/src && wget --no-check-certificate https://raw.githubusercontent.com/nouphet/otrs-installer/master/otrs-installer.sh && bash otrs-installer.sh rpm
+```
+
