@@ -82,8 +82,12 @@ if [ $1 = "rpm" ]
         echo "########################################"
         
         cd /usr/local/src/
-        wget http://ftp.otrs.org/pub/otrs/RPMS/rhel/6/otrs-$VERSION-01.noarch.rpm
-        yum -y localinstall otrs-$VERSION-01.noarch.rpm
+        wget http://ftp.otrs.org/pub/otrs/RPMS/rhel/6/otrs-$VERSION-02.noarch.rpm
+        if [ $? nq 0 ]then;
+            wget http://ftp.otrs.org/pub/otrs/RPMS/rhel/6/otrs-$VERSION-01.noarch.rpm
+            yum -y localinstall otrs-$VERSION-01.noarch.rpm
+        fi
+        yum -y localinstall otrs-$VERSION-02.noarch.rpm
 fi
 
 if [ $1 = "src" ]
