@@ -171,17 +171,28 @@ if [ $1 = "src" ]
 
 fi
 
-# Start Server
-systemctl enable httpd.service
-systemctl start  httpd.service
+mod_conf
+start_services
 
-systemctl enable mariadb.service
-systemctl start  mariadb.service
+}
 
+mod_conf() {
+    cd /usr/local/src/
+    wget https://raw.githubusercontent.com/nouphet/otrs-installer/master/my.cnf
+    cp my.cnf /etc/my.cnf
+}
 
-# Set init Script
-su -c "/opt/otrs/bin/otrs.Daemon.pl start" -s /bin/bash otrs
-echo "Execute \"/opt/otrs/bin/Cron.sh start\" as OTRS User."
+start_services() {
+    # Start Server
+    systemctl enable httpd.service
+    systemctl start  httpd.service
+    
+    systemctl enable mariadb.service
+    systemctl start  mariadb.service
+    
+    # Set On OTRS Scheduler
+    su -c "/opt/otrs/bin/otrs.Daemon.pl start" -s /bin/bash otrs
+    su - otrs -c "/opt/otrs/bin/Cron.sh start"
 }
 
 main $@
